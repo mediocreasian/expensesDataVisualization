@@ -25,12 +25,12 @@ formatDate = (date) => {
   return [year, month, day].join("-");
 };
 
-insertExcelRecords = async (batchRecords) => {
+insertExcelRecords = async (batchRecords,batchFile) => {
   var result = "";
   try {
     var dbo = client.db("finance"); // ! Use this database
 
-    var myColl = dbo.collection("2024"); // ! Use this table/collection
+    var myColl = dbo.collection(batchFile); // ! Use this table/collection
 
     await myColl.insertMany(batchRecords, { ordered: false }).then(() => {
       result = "Successfully Inserted all";
@@ -44,11 +44,11 @@ insertExcelRecords = async (batchRecords) => {
   }
 };
 
-exports.runBatchFile = () => {
+exports.runBatchFile = (batchFile) => {
   var x = []; // * Assign an Array
 
   // * Assign the Excel file
-  var workbook = XLSX.readFile("2024_spending.xlsx");
+  var workbook = XLSX.readFile(batchFile+".xlsx");
   var sheet_name_list = workbook.SheetNames; // * Give the Name list of all the sheets of the Excel File
   // * assign the WorkSheet
   var workSheet = workbook.Sheets[sheet_name_list[1]];
@@ -67,11 +67,10 @@ exports.runBatchFile = () => {
     json_Obj["Date"] = formatDate(xlData[i]["Date and time"]);
     json_Obj["Category"] = xlData[i].Category;
     json_Obj["Amount"] = xlData[i]["Amount in default currency"];
-    //json_Obj["Amount"] = xlData[i]["sda"];
 
     x[i] = json_Obj;
   }
-  insertExcelRecords(x).then((result) => {
+  insertExcelRecords(x,batchFile).then((result) => {
     // ! Call back function
     console.log("Succesfull Insertion : ", result);
   });
