@@ -1,8 +1,5 @@
-///const inquirer = require('inquirer');
+const inquirer = require('inquirer');
 const components = require("./components/functions.js")
-
-
-
 
 const questions = [
   {
@@ -16,4 +13,4 @@ inquirer.prompt(questions).then(answers => {
   console.log(` You will be using Batch File ${answers.file}!`);
 });
 */
-components.runBatchFile();
+//components.runBatchFile();
