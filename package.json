@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-excelfiles",
+  "version": "1.0.0",
+  "description": "Read Excel Files and Insert to MongoDB ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "mediocreasian",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "exceljs": "^4.4.0",
+    "inquirer": "^8.0.0",
+    "jsonfile": "^6.1.0",
+    "mongodb": "^6.5.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
+  }
+}
