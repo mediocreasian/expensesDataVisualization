@@ -32,7 +32,7 @@ insertExcelRecords = async (batchRecords,batchFile) => {
 
     var myColl = dbo.collection(batchFile); // ! Use this table/collection
 
-    await myColl.insertMany(batchRecords, { ordered: false }).then(() => {
+    myColl.insertMany(batchRecords, { ordered: false }).then(() => {
       result = "Successfully Inserted all";
     });
   } catch (error) {
