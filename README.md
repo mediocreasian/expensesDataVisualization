@@ -1,4 +1,4 @@
-# Excel Visualization
+# Expenses Data Visualization 
 A NodeJS App that processes exported CSV Files from a spending tracker that I personally use :  
 [Money Manager](https://play.google.com/store/apps/details?id=ru.innim.my_finance)
 
