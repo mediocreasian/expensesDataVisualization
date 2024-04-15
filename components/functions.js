@@ -26,15 +26,19 @@ formatDate = (date) => {
 };
 
 insertExcelRecords = async (batchRecords,batchFile) => {
-  var result = "";
+  var result = ""; // * Accessible variable outside of try-catch block
+
   try {
+    console.log('insertExcel Records');
     var dbo = client.db("finance"); // ! Use this database
 
-    var myColl = dbo.collection(batchFile); // ! Use this table/collection
+    var myColl = dbo.collection(batchFile); // ! Use this table/collection  
 
-    myColl.insertMany(batchRecords, { ordered: false }).then(() => {
-      result = "Successfully Inserted all";
-    });
+    resultInsert = await myColl.insertMany(batchRecords, { ordered: false });
+    
+    if(resultInsert['acknowledged']==true){
+      result="Success!";
+    }
   } catch (error) {
     console.dir(error);
     result = error;
